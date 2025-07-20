@@ -1,0 +1,150 @@
+# Legal Billing Email Summarizer
+
+A FastAPI application that automatically fetches Gmail emails, generates AI-powered summaries for legal billing, and integrates with Clio for time tracking and expense management.
+
+## Features
+
+- 📧 **Gmail Integration**: Automatically fetch sent emails using Gmail API
+- 🤖 **AI Summarization**: Generate professional billing summaries using Together AI
+- ⚖️ **Clio Integration**: Push time entries and expenses directly to Clio
+- 📱 **Modern UI**: Clean, responsive interface with real-time status updates
+- 🔐 **OAuth Authentication**: Secure authentication for Gmail and Clio
+- ☁️ **Cloud Ready**: Multiple deployment options with Docker support
+
+## Tech Stack
+
+- **Backend**: FastAPI, Python 3.11+
+- **AI**: Together AI (Mistral-7B model)
+- **APIs**: Gmail API, Clio API
+- **Frontend**: Vanilla JavaScript, Modern CSS
+- **Deployment**: Docker, Railway, Render, Fly.io
+
+## Quick Start
+
+### 1. Clone and Setup
+```bash
+git clone <repository-url>
+cd billing-gmail
+cp .env.example .env
+# Edit .env with your API keys
+```
+
+### 2. Install Dependencies
+```bash
+pip install -r requirements.txt
+```
+
+### 3. Configure APIs
+
+**Gmail API Setup:**
+1. Go to [Google Cloud Console](https://console.cloud.google.com/)
+2. Create a new project or select existing
+3. Enable Gmail API
+4. Create OAuth 2.0 credentials
+5. Download client_secret.json
+
+**Together AI Setup:**
+1. Sign up at [Together AI](https://together.ai/)
+2. Get your API key from dashboard
+
+**Clio Setup:**
+1. Contact Clio support for API access
+2. Get your client ID and secret
+
+### 4. Run Locally
+```bash
+uvicorn app.main:app --reload
+```
+Visit `http://localhost:8000`
+
+## Deployment Options
+
+### Railway (Recommended for beginners)
+1. Connect your GitHub repo
+2. Add environment variables
+3. Deploy automatically
+
+### Render
+1. Connect GitHub repo
+2. Use `render.yaml` configuration
+3. Add environment variables
+4. Deploy
+
+### Fly.io
+```bash
+flyctl launch
+flyctl secrets set TOGETHER_API_KEY=your_key
+flyctl deploy
+```
+
+### Docker
+```bash
+docker build -t billing-app .
+docker run -p 8000:8000 --env-file .env billing-app
+```
+
+## Environment Variables
+
+See `.env.example` for all required variables:
+
+- `TOGETHER_API_KEY`: Your Together AI API key
+- `CLIO_CLIENT_ID`: Clio application client ID
+- `CLIO_CLIENT_SECRET`: Clio application secret
+- `GOOGLE_CLIENT_SECRET_FILE`: Path to Google OAuth credentials
+
+## Usage
+
+1. **Connect to Clio**: Click "Login to Clio" to authenticate
+2. **Fetch Emails**: Click "Fetch Emails" to get recent sent emails
+3. **Generate Summaries**: Click "Generate Summaries" to create AI summaries
+4. **Push to Clio**: Click "Push to Clio" to create time entries and expenses
+
+## Architecture
+
+```
+app/
+├── main.py              # FastAPI application
+├── config.py            # Configuration management
+├── models/
+│   └── schemas.py       # Pydantic models
+├── services/
+│   ├── email_service.py # Gmail integration
+│   ├── summarizer_service.py # AI summarization
+│   └── clio_service.py  # Clio API integration
+├── routers/
+│   ├── emails.py        # Email endpoints
+│   └── clio.py          # Clio endpoints
+└── utils/
+    ├── gmail_auth.py    # Gmail authentication
+    └── email_parser.py  # Email parsing utilities
+```
+
+## Security Features
+
+- OAuth 2.0 authentication for all APIs
+- Environment-based configuration
+- Input validation with Pydantic
+- Error handling and logging
+- CORS protection
+- Health checks
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests if applicable
+5. Submit a pull request
+
+## License
+
+MIT License - see LICENSE file for details
+
+## Support
+
+For issues and questions:
+1. Check the GitHub issues
+2. Review API documentation
+3. Contact support for API-specific issues
+
+---

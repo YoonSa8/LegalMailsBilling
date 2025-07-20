@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Legal Billing Email Summarizer</title>
+    <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <h2>📧 Legal Billing Assistant</h2>
+        </div>
+        <div class="nav-actions">
+            <button id="clio-status-btn" class="btn-secondary">Check Clio Status</button>
+            <button id="clio-login-btn" class="btn-primary">Login to Clio</button>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="container">
+        <section class="hero">
+            <h1>Email Summary & Clio Integration</h1>
+            <p>Automatically summarize legal emails and sync with Clio for billing</p>
+        </section>
+
+        <!-- Status Section -->
+        <section class="status-section">
+            <div id="status" class="status-message"></div>
+            <div id="auth-status" class="auth-status"></div>
+        </section>
+
+        <!-- Action Buttons -->
+        <section class="actions">
+            <button id="fetch-emails-btn" class="btn-action">
+                <span class="btn-icon">📬</span>
+                Fetch Emails
+            </button>
+            <button id="summarize-btn" class="btn-action" disabled>
+                <span class="btn-icon">📝</span>
+                Generate Summaries
+            </button>
+            <button id="push-clio-btn" class="btn-action" disabled>
+                <span class="btn-icon">⬆️</span>
+                Push to Clio
+            </button>
+        </section>
+
+        <!-- Results Section -->
+        <section class="results-section">
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="emails">Emails</button>
+                <button class="tab-btn" data-tab="summaries">Summaries</button>
+            </div>
+            
+            <div id="emails-tab" class="tab-content active">
+                <h3>📧 Fetched Emails</h3>
+                <div id="email-list" class="item-list"></div>
+            </div>
+            
+            <div id="summaries-tab" class="tab-content">
+                <h3>📝 Email Summaries</h3>
+                <div id="summary-list" class="item-list"></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="spinner"></div>
+        <p>Processing...</p>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
